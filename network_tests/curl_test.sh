@@ -8,7 +8,7 @@ NC='\033[0m' # No Color
 declare -A endpoints
 
 # VCenter and ESXi hosts on 443
-endpoints["vcenter"]="172.16.10.30:443"
+endpoints["vcenter"]="172.16.10.28:443"
 endpoints["esxi1"]="172.16.10.5:443" # if all are on the same network, one esxi host should be sufficient
 #endpoints["esxi2"]="172.16.10.6:443"
 #endpoints["esxi3"]="172.16.10.7:443"

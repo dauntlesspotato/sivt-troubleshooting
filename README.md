@@ -6,6 +6,9 @@ You should create a VM on each network (SIVT can be used for this), and then run
 (based on preference) on that network to test that all services local to that network are 
 available, and that the network has access to the requisite services in other networks.
 
+You can create an nginx webserver on the SIVT instance to serve whatever port you are trying to test using
+    docker run -it --rm -d -p 8080:80 --name web nginx
+
 ![Alt text](/../screenshots/images/vSphere-network-diagram.png?raw=true "Network Diagram")
 
 netcat is faster, but some security people do not like it being used on their networks.
