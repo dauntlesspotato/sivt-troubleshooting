@@ -1,6 +1,6 @@
 # sivt-troubleshooting
 
-You should use the scripts in the network troubleshooting folder to test network connectivity
+You should use the scripts in the network_tests folder to test network connectivity
 
 You should create a VM on each network (SIVT can be used for this), and then run either the curl or netcat test script 
 (based on preference) on that network to test that all services local to that network are 
