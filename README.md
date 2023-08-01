@@ -8,5 +8,7 @@ available, and that the network has access to the requisite services in other ne
 
 netcat is faster, but some security people do not like it being used on their networks.
 
+![Alt text](/../screenshots/images/curl-test-example.jpg?raw=true "Curl Test Example")
+
 Please refer all questions to me@johncarden.engineer or jcarden@vmware.com.
 # sivt-troubleshooting
