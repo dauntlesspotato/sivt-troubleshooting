@@ -8,7 +8,7 @@ available, and that the network has access to the requisite services in other ne
 
 ![Alt text](/../screenshots/images/vSphere-network-diagram.png?raw=true "Network Diagram")
 
-netcat is faster, but some security people do not like it being used on their networks.
+netcat is faster, but some security folks do not like it being used on their networks.
 
 ![Alt text](/../screenshots/images/curl-test-example.jpg?raw=true "Curl Test Example")
 
