@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define the ANSI escape codes for green color
+# Define the ANSI escape codes for colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
