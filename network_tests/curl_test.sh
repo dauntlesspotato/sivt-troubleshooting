@@ -48,8 +48,26 @@ for key in ${!endpoints[@]}; do
     IFS=":" read -ra value_array <<< "$values"
     # inform user
     echo "Testing endpoint: $key"
+     
+    # normal ping test
+    echo -n "Normal ping test --> "
+    ping_result=$(ping -w 3 -c 5 -i .6 "${value_array[0]}")
+    if [[ $? != 0 ]]; then
+        echo -e "${RED}Failed${NC}"
+    else
+        echo -e "${GREEN}OK${NC}"
+    fi
     
-    # perform test for each port
+    # jumbo ping test
+    echo -n "Jumbo ping test --> "
+    ping_result=$(ping -w 3 -c 5 -i .6 -s 1600 "${value_array[0]}")
+    if [[ $? != 0 ]]; then
+        echo -e "${RED}Failed${NC}"
+    else
+        echo -e "${GREEN}OK${NC}"
+    fi
+
+    # perform firewall and ping test for each port
     n=${#value_array[@]} # getting length of array
     for ((i = 1; i < n; i++)); do
         echo -n "Testing ${value_array[0]}:${value_array[$i]} --> "
