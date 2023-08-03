@@ -7,12 +7,12 @@ NC='\033[0m' # No Color
 
 # Check curl version
 curl_version=$(curl --version 2>&1 | head -n 1 | awk '{ print $2 }')
-echo "curl version is $curl_version, the minimum required version for error message output is 7.75.0"
+echo "NOTE: curl version is $curl_version, the minimum required version for error message output is 7.75.0"
 
 declare -A endpoints
 
 # VCenter and ESXi hosts on 443
-endpoints["vcenter"]="172.16.10.28:443"
+endpoints["vcenter"]="172.16.10.40:443"
 endpoints["esxi1"]="172.16.10.5:443" # if all are on the same network, one esxi host should be sufficient
 #endpoints["esxi2"]="172.16.10.6:443"
 #endpoints["esxi3"]="172.16.10.7:443"
@@ -54,6 +54,7 @@ for key in ${!endpoints[@]}; do
     values="${endpoints[$key]}"
     # split the values on ":"
     IFS=":" read -ra value_array <<< "$values"
+    unset IFS
     # inform user
     echo "Testing endpoint: $key"
      
@@ -70,7 +71,7 @@ for key in ${!endpoints[@]}; do
     echo -n "Jumbo ping test --> "
     ping_result=$(ping -w 3 -c 5 -i .6 -s 1600 "${value_array[0]}")
     if [[ $? != 0 ]]; then
-        echo -e "${RED}Failed${NC}"
+        echo -e "${RED}Failed${NC} Note: This should not prevent SIVT from completing if normal pings are successful"
     else
         echo -e "${GREEN}OK${NC}"
     fi
@@ -82,6 +83,7 @@ for key in ${!endpoints[@]}; do
         response=$(curl -s -o /dev/null -w "%{response_code}:%{errormsg}" "${value_array[0]}:${value_array[$i]}")
         #echo "Response: $response"
         IFS=":" read -ra response_array <<< "$response"
+        unset IFS
 
         if [[ "${response_array[1]}" == *"Failed to connect"* ]]; then
             echo -e "${RED}${response_array[0]} ${response_array[1]}${NC}"
