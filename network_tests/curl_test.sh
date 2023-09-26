@@ -71,7 +71,7 @@ for key in ${!endpoints[@]}; do
     echo -n "Jumbo ping test --> "
     ping_result=$(ping -w 3 -c 5 -i .6 -s 1600 "${value_array[0]}")
     if [[ $? != 0 ]]; then
-        echo -e "${RED}Failed${NC} Note: This should not prevent SIVT from completing if normal pings are successful"
+        echo -e "${RED}Failed${NC} Note: This should not prevent SIVT from completing"
     else
         echo -e "${GREEN}OK${NC}"
     fi
